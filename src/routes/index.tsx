@@ -4,6 +4,9 @@ import { motion } from "motion/react";
 import LiveBackground from "@/components/LiveBackground";
 import CircularGallery from "@/components/CircularGallery";
 import TiltedCard from "@/components/TiltedCard";
+import SiteNav from "@/components/SiteNav";
+import { Link } from "@tanstack/react-router";
+import { PRODUCTS } from "@/lib/products";
 import heroBottle from "@/assets/hero-bottle.png";
 import heroBox from "@/assets/hero-box.png";
 import heroJar from "@/assets/hero-jar.png";
@@ -57,10 +60,11 @@ function Home() {
   return (
     <div id="home" className="relative min-h-screen text-foreground">
       <LiveBackground />
-      <Nav />
+      <SiteNav />
       <Hero heroIdx={heroIdx} />
       <VotingBanner />
       <UploadSection />
+      <ProductsSection />
       <RecommendedSection />
       <Footer />
     </div>
@@ -264,18 +268,18 @@ function VotingBanner() {
           </div>
 
           <div className="flex gap-3 md:justify-end">
-            <a
-              href="#community"
+            <Link
+              to="/community"
               className="rounded-2xl brutal-border brutal-shadow bg-brand-mint px-5 py-3 text-sm font-bold transition-transform hover:-translate-y-1 active:translate-x-1 active:shadow-none"
             >
               Vote Now
-            </a>
-            <a
-              href="#community"
+            </Link>
+            <Link
+              to="/community"
               className="rounded-2xl brutal-border brutal-shadow-sm bg-card px-5 py-3 text-sm font-bold transition-transform hover:-translate-y-1"
             >
               View Contest
-            </a>
+            </Link>
           </div>
         </div>
       </motion.div>
