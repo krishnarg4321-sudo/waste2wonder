@@ -4,24 +4,24 @@ import mandala from "@/assets/mandala-bg.jpg";
 export default function LiveBackground() {
   return (
     <div className="live-bg" aria-hidden>
-      {/* Mandala layer — slow rotation + subtle scale */}
+      {/* Mandala layer — larger tile so viewers see the cutting edge of the artwork */}
       <div
-        className="absolute inset-[-20%] opacity-[0.22] mix-blend-multiply"
+        className="absolute inset-[-25%] opacity-[0.26] mix-blend-multiply"
         style={{
           backgroundImage: `url(${mandala})`,
-          backgroundSize: "760px 760px",
+          backgroundSize: "1400px 1400px",
           backgroundRepeat: "repeat",
-          animation: "mandala-drift 90s linear infinite",
+          animation: "mandala-drift 110s linear infinite",
         }}
       />
-      {/* Second, slower mandala pass for parallax */}
+      {/* Second, much larger parallax pass — deliberately clips off-screen */}
       <div
-        className="absolute inset-[-10%] opacity-[0.12]"
+        className="absolute inset-[-15%] opacity-[0.14]"
         style={{
           backgroundImage: `url(${mandala})`,
-          backgroundSize: "1200px 1200px",
+          backgroundSize: "2000px 2000px",
           backgroundRepeat: "repeat",
-          animation: "mandala-drift 140s linear reverse infinite",
+          animation: "mandala-drift 180s linear reverse infinite",
         }}
       />
       {/* Drifting colour blobs */}
