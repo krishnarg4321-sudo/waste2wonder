@@ -4,6 +4,9 @@ import { motion } from "motion/react";
 import LiveBackground from "@/components/LiveBackground";
 import CircularGallery from "@/components/CircularGallery";
 import TiltedCard from "@/components/TiltedCard";
+import SiteNav from "@/components/SiteNav";
+import { Link } from "@tanstack/react-router";
+import { PRODUCTS } from "@/lib/products";
 import heroBottle from "@/assets/hero-bottle.png";
 import heroBox from "@/assets/hero-box.png";
 import heroJar from "@/assets/hero-jar.png";
@@ -57,10 +60,11 @@ function Home() {
   return (
     <div id="home" className="relative min-h-screen text-foreground">
       <LiveBackground />
-      <Nav />
+      <SiteNav />
       <Hero heroIdx={heroIdx} />
       <VotingBanner />
       <UploadSection />
+      <ProductsSection />
       <RecommendedSection />
       <Footer />
     </div>
@@ -264,18 +268,18 @@ function VotingBanner() {
           </div>
 
           <div className="flex gap-3 md:justify-end">
-            <a
-              href="#community"
+            <Link
+              to="/community"
               className="rounded-2xl brutal-border brutal-shadow bg-brand-mint px-5 py-3 text-sm font-bold transition-transform hover:-translate-y-1 active:translate-x-1 active:shadow-none"
             >
               Vote Now
-            </a>
-            <a
-              href="#community"
+            </Link>
+            <Link
+              to="/community"
               className="rounded-2xl brutal-border brutal-shadow-sm bg-card px-5 py-3 text-sm font-bold transition-transform hover:-translate-y-1"
             >
               View Contest
-            </a>
+            </Link>
           </div>
         </div>
       </motion.div>
@@ -424,6 +428,65 @@ function UploadMark() {
 }
 
 function RecommendedSection() {
+  return _RecommendedSection();
+}
+
+function ProductsSection() {
+  const featured = PRODUCTS.slice(0, 6);
+  return (
+    <section id="products" className="relative mx-auto max-w-6xl px-6 py-16">
+      <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <span className="inline-block rounded-full brutal-border bg-brand-coral px-3 py-1 text-[11px] font-bold uppercase tracking-widest">
+            Products
+          </span>
+          <h2 className="mt-3 text-4xl md:text-5xl">Browse every blueprint.</h2>
+        </div>
+        <Link
+          to="/community"
+          className="rounded-xl brutal-border brutal-shadow-sm bg-card px-4 py-2 text-sm font-bold transition-transform hover:-translate-y-0.5"
+        >
+          Open Community
+        </Link>
+      </div>
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {featured.map((p, i) => (
+          <Link
+            key={p.id}
+            to="/product/$id"
+            params={{ id: p.id }}
+            className={`group rounded-3xl brutal-border brutal-shadow-lg overflow-hidden transition-transform hover:-translate-y-1 ${
+              ["bg-brand-mint", "bg-brand-mustard", "bg-brand-pink", "bg-brand-coral", "bg-brand-lilac", "bg-card"][i % 6]
+            }`}
+          >
+            <div className="relative aspect-[4/3] overflow-hidden">
+              <img src={p.image} alt={p.title} loading="lazy" className="h-full w-full object-cover transition-transform group-hover:scale-105" />
+              <span className="absolute left-3 top-3 rounded-lg brutal-border bg-card px-2 py-1 text-[10px] font-bold uppercase tracking-widest">
+                {p.material}
+              </span>
+              <span className="absolute right-3 top-3 rounded-lg brutal-border bg-brand-coral px-2 py-1 text-[10px] font-bold uppercase tracking-widest">
+                {p.difficulty}
+              </span>
+            </div>
+            <div className="p-4">
+              <div className="flex items-center justify-between">
+                <div className="font-display text-xl leading-none">{p.title}</div>
+                <span className="rounded-md brutal-border bg-card px-2 py-1 text-[10px] font-bold">{p.time}</span>
+              </div>
+              <p className="mt-2 text-sm font-medium text-foreground/75 line-clamp-2">{p.summary}</p>
+              <div className="mt-3 flex items-center justify-between text-[11px] font-bold uppercase tracking-widest text-foreground/70">
+                <span>{p.cost}</span>
+                <span>{p.impactKg} kg saved</span>
+              </div>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function _RecommendedSection() {
   return (
     <section id="explore" className="relative mx-auto max-w-7xl px-6 py-16">
       <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
