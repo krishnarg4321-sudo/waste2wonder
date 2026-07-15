@@ -114,7 +114,7 @@ function ProductPage() {
           <div className="rounded-3xl brutal-border brutal-shadow-lg bg-card p-6">
             <h2 className="font-display text-2xl">Materials</h2>
             <ul className="mt-3 space-y-2 text-sm font-medium">
-              {product.materialsList.map((m) => (
+              {product.materialsList.map((m: string) => (
                 <li key={m} className="flex items-start gap-2">
                   <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-brand-coral" />
                   {m}
@@ -125,7 +125,7 @@ function ProductPage() {
           <div className="rounded-3xl brutal-border brutal-shadow-lg bg-card p-6 md:col-span-2">
             <h2 className="font-display text-2xl">Step-by-Step</h2>
             <ol className="mt-3 space-y-3">
-              {product.steps.map((s, i) => (
+              {product.steps.map((s: string, i: number) => (
                 <li key={i} className="flex items-start gap-3 rounded-xl brutal-border bg-brand-mint/50 p-3">
                   <span className="grid h-7 w-7 shrink-0 place-items-center rounded-md brutal-border bg-card font-display text-xs">
                     {i + 1}
@@ -140,7 +140,7 @@ function ProductPage() {
         <section className="mt-10 rounded-3xl brutal-border brutal-shadow-lg bg-brand-mustard p-6">
           <h2 className="font-display text-2xl">Safety Tips</h2>
           <ul className="mt-3 grid gap-2 md:grid-cols-2">
-            {product.safety.map((s) => (
+            {product.safety.map((s: string) => (
               <li key={s} className="rounded-xl brutal-border bg-card px-3 py-2 text-sm font-semibold">{s}</li>
             ))}
           </ul>
